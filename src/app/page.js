@@ -7,7 +7,6 @@ export default function Home() {
     <div >
       <main className="relative">
         <Navbar />
-        
         <Homepage />
       </main>
     </div>

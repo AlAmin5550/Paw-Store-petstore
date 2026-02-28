@@ -1,5 +1,6 @@
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/Services/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,10 +24,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        lang="en" className={`${inter.variable} ${poppins.variable}`}
-      >
-        {children}
+      <body lang="en" className={`${inter.variable} ${poppins.variable}`}>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

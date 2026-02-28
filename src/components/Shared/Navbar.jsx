@@ -1,14 +1,18 @@
-import React from 'react';
+"use client";
+import React, { use } from 'react';
 import { Phone, Mail, MapPin, Search, Heart, ShoppingCart } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 import NavLink from './NavLink';
+import { signOut, useSession } from 'next-auth/react';
+import button from 'daisyui/components/button';
 
 export default function Navbar() {
+    const session = useSession();
     return (
         <div className='absolute w-full top-0 left-1/2 z-50 -translate-x-1/2'>
             {/* 🔹 Top info bar */}
-            <div className=" text-sm">
+            <div className="text-sm">
                 <div className="max-w-7xl mx-auto px-4 mt-1 flex justify-between items-center text-gray-600">
                     <div className="flex gap-4 items-center">
                         <span className="flex items-center gap-1">
@@ -42,7 +46,7 @@ export default function Navbar() {
                                     <li><NavLink href="/contact">Contact Us</NavLink></li>
                                 </ul>
                             </div>
-                            <Link href="/" className="flex font-bold text-lg font-heading items-center gap-2">
+                            <Link href="/" className="flex font-bold font-heading text-sm items-center gap-2 lg:text-lg">
                                 <Image src="/icon.svg" width={29.27} height={24} alt='paw Store'></Image> Paw Store
                             </Link>
                         </div>
@@ -70,7 +74,11 @@ export default function Navbar() {
                                 </span>
                             </div>
                             <div className='btn btn-ghost p-2'>
-                                <Link href="/signup">Sign Up</Link>
+                                {
+                                    !session.data ? <Link href="/signup">Sign Up</Link> : <button className='btn btn-ghost' onClick={() => signOut()}>Sign Out</button>
+
+                                }
+                                
 
                             </div>
                         </div>
