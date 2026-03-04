@@ -78,9 +78,15 @@ export default function Navbar() {
                                     !session.data ? <Link href="/signup">Sign Up</Link> : <button className='btn btn-ghost' onClick={() => signOut()}>Sign Out</button>
 
                                 }
-                                
-
                             </div>
+                            <div className='btn btn-ghost p-2'>
+                                {
+                                    !session.data.role == "admin" ? <Link href="/admin
+                                    ">Sign Up</Link> : <button className='btn btn-ghost'>Dashboard</button>
+
+                                }
+                            </div>
+
                         </div>
                     </div>
 
