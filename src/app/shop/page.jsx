@@ -3,13 +3,13 @@
 import Footer from '@/components/Shared/Footer'
 import Hero from '@/components/Shared/Hero'
 import Navbar from '@/components/Shared/Navbar'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import heroImg from '@/../public/HeroImg3.svg'
 import ShopByPet from '@/components/Shared/ShopByPet'
 import { useSearchParams } from 'next/navigation'
 import Cards from '@/components/Shared/Cards'
 
-export default function Page() {
+function ShopPageContent() {
     const [products, setProducts] = useState([]);
     const searchParams = useSearchParams();
     const [selectedCategories, setSelectedCategories] = useState(() => {
@@ -96,5 +96,13 @@ export default function Page() {
             </div>
             <Footer />
         </div>
+    )
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<div className='p-5 text-center'>Loading shop...</div>}>
+            <ShopPageContent />
+        </Suspense>
     )
 }

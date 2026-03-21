@@ -1,14 +1,14 @@
 "use client";
 import Footer from '@/components/Shared/Footer'
 import Navbar from '@/components/Shared/Navbar'
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
 
 
-export default function Page() {
+function SignInContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -90,5 +90,13 @@ export default function Page() {
 
             <Footer />
         </div>
+    )
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<div className='p-5 text-center'>Loading sign in...</div>}>
+            <SignInContent />
+        </Suspense>
     )
 }
