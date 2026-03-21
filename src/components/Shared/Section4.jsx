@@ -29,7 +29,7 @@ export default function Section4() {
                     Learn more about our story, values, and commitment to pet care.
                 </p>
 
-                <Link href="/about-us">
+                <Link href="/about">
                     <button className="btn btn-neutral rounded-xl px-8 py-6 text-lg shadow-md hover:scale-105 transition">
                         Learn More
                     </button>

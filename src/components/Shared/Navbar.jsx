@@ -1,14 +1,15 @@
 "use client";
-import React, { use } from 'react';
-import { Phone, Mail, MapPin, Search, Heart, ShoppingCart } from "lucide-react";
+import React from 'react';
+import { Phone, Mail, MapPin, ShoppingCart } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 import NavLink from './NavLink';
 import { signOut, useSession } from 'next-auth/react';
-import button from 'daisyui/components/button';
+import { useCart } from '@/Services/CartProvider';
 
 export default function Navbar() {
     const session = useSession();
+    const { cartCount } = useCart();
     return (
         <div className='absolute w-full top-0 left-1/2 z-50 -translate-x-1/2'>
             {/* 🔹 Top info bar */}
@@ -60,32 +61,26 @@ export default function Navbar() {
                             </ul>
                         </div>
                         <div className="navbar-end gap-3">
-                            {/* search box */}
-                            <div className='hidden md:flex items-center bg-base-200 rounded-full px-4 '>
-                                <input type="text" placeholder='Search Product...' className='input input-ghost input-sm focus:outline-none w-40' />
-                                <Search size={16} className='cursor-pointer' />
-
-                            </div>
+                            
                             {/* shopping Cart */}
-                            <div className='indicator'>
+                            <Link href="/cart" className='indicator'>
                                 <ShoppingCart size={20} />
                                 <span className='badge badge-sm rounded-full p-1 bg-primary text-white indicator-item'>
-                                    0
+                                    {cartCount}
                                 </span>
-                            </div>
-                            <div className='btn btn-ghost p-2'>
-                                {
-                                    !session.data ? <Link href="/signup">Sign Up</Link> : <button className='btn btn-ghost' onClick={() => signOut()}>Sign Out</button>
-
-                                }
-                            </div>
-                            <div className='btn btn-ghost p-2'>
-                                {
-                                    !session.data.role == "admin" ? <Link href="/admin
-                                    ">Sign Up</Link> : <button className='btn btn-ghost'>Dashboard</button>
-
-                                }
-                            </div>
+                            </Link>
+                            {!session.data ? (
+                                <div className='btn btn-ghost p-2'>
+                                    <Link href="/signup">Sign Up</Link>
+                                </div>
+                            ) : (
+                                <>
+                                    <button className='btn btn-ghost' onClick={() => signOut()}>Sign Out</button>
+                                    {session.data?.user?.role === 'admin' && (
+                                        <Link href="/admin" className='btn btn-ghost'>Admin</Link>
+                                    )}
+                                </>
+                            )}
 
                         </div>
                     </div>

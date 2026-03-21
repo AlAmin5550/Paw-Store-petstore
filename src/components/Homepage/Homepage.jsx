@@ -12,11 +12,11 @@ export default function Homepage() {
   return (
     <div>
       <Hero />
-      <Category1 />
+      <Category1 isHomepage={true} />
       <Featured />
       <Section4 />
       <BestProducts />
-      <ShopByPet/>
+      <ShopByPet isHomepage={true}/>
       <NewsSection/>
       <Footer/>
     </div>

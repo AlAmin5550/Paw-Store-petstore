@@ -2,7 +2,7 @@ import { ShoppingCart } from 'lucide-react'
 import React from 'react'
 import { useCart } from '@/Services/CartProvider'
 
-export default function Cards({ product }) {
+export default function productCards({ product }) {
     const { addToCart } = useCart();
 
     return (
@@ -11,7 +11,7 @@ export default function Cards({ product }) {
                 <img
                     width={306}
                     height={306}
-                    src={product.imageUrl || product.image || "/PuppyFood1.svg"}
+                    src={product.imageUrl || "/PuppyFood1.svg"}
                     alt={product.name || "Product"} />
             </figure>
             <div className="card-body">

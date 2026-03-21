@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from 'react'
 
-export default function Hero({ heading, description, buttonText, heroImage }) {
+export default function Hero({ heading, description, buttonText, heroImage, buttonLink }) {
     return (
         <div className="hero bg-muted min-h-[640px] md:min-h-[660px] lg:min-h-[660px] relative overflow-hidden">
 
@@ -41,7 +41,7 @@ export default function Hero({ heading, description, buttonText, heroImage }) {
                         {description || "Discover a world of pet care and love at Paw Store, where we provide everything you need to keep your furry friends happy and healthy."}
                     </p>
 
-                    <Link href="/shop">
+                    <Link href={buttonLink || "/shop"}>
                         <button className="btn btn-neutral rounded-xl px-8 py-6 text-lg shadow-md hover:scale-105 transition">
                             {buttonText || "Shop Now"}
                         </button>

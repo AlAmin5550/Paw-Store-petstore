@@ -18,7 +18,9 @@ export default function Sidebar() {
                     <li ><Link href="/admin/products">Products</Link></li>
                     <li ><Link href="/admin/addItems">Add Products</Link></li>
                     <li ><Link href="/admin/orders">Orders</Link></li>
-                    <li><Link href="/admin/customers">Customers</Link></li>
+                    <li className=''><Link href="/admin/customers">Customers</Link></li>
+                    <hr className='text-gray-300'/>
+                    <li className=''><Link href="/">Homepage</Link></li>
                 </ul>
             </div>
         </div>
